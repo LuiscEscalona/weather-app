@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+# Weather-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Permite generar reportes partiendo de un historial de búsqueda del clima por sucursales de una compañía.
+También muestra el clima actual de la sucursal y el pronóstico en las próximas horas.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Ingreso de una sucursal en el buscador:**
 
-## Expanding the ESLint configuration
+  - Pantalla Home mostrará el clima actual y el pronóstico
+  - Pantalla Historico mostrará una grilla con datos y gráficos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Generación de reportes:**
 
-- Configure the top-level `parserOptions` property like this:
+  - Descarga de excel con data del historial
+  - Descarga de pdf con gráficos
+  - Cada gráfico puede descargarse de manera individual
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Tecnologías usadas
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- React
+- Typescript
+- Vite
+- TanStack Query (Manejo de peticiones)
+- React Router
+- Apex Chart (Gráficos)
+- jsPDF (Generacion de PDF)
+- xlsx (Generacion de excel)
+- Material UI (Estilos)
+- Lottie React (Animaciones)
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Dev
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Requisito
+
+- Node.js (versión usada 20.17.0)
+
+### Steps
+
+1. Clonar repositorio
+2. Instalar dependencias `npm install`
+3. Copiar el archivo .env.template renombrar a .env
+4. Generar api key
+5. Iniciar servidor `npm run dev`

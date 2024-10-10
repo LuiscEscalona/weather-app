@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "description": "Buenos Aires, Argentina",
+    "lat": -34.6037,
+    "lon": -58.3816,
+    "country": "Argentina",
+    "city": "Buenos Aires"
+  },
+  {
+    "id": 2,
+    "description": "Córdoba, Argentina",
+    "lat": -31.4201,
+    "lon": -64.1888,
+    "country": "Argentina",
+    "city": "Córdoba"
+  },
+  {
+    "id": 3,
+    "description": "Mexico City, Mexico",
+    "lat": 19.4326,
+    "lon": -99.1332,
+    "country": "Mexico",
+    "city": "Mexico City"
+  },
+  {
+    "id": 4,
+    "description": "Santiago, Chile",
+    "lat": -33.4489,
+    "lon": -70.6693,
+    "country": "Chile",
+    "city": "Santiago"
+  },
+  {
+    "id": 5,
+    "description": "Uberlândia, Brasil",
+    "lat": -30.4214,
+    "lon": -49.1609,
+    "country": "Brasil",
+    "city": "Uberlândia"
+  }
+]
