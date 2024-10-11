@@ -105,11 +105,12 @@ export const DropDownWithButton: React.FC<Props> = ({
         open={isOpenFeedback}
         autoHideDuration={durationFeedback}
         onClose={handleCloseFeedback}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       >
         <Alert
           onClose={handleCloseFeedback}
           severity="error"
-          variant="outlined"
+          variant="filled"
           sx={{ width: "100%" }}
         >
           {feedbackMessage}
