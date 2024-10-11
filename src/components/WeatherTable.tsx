@@ -1,8 +1,7 @@
-import { useWeatherContext } from "../context/useWeatherContext";
-import { ContentSection } from "./ContentSection";
-import { DataTable } from "./DataTable";
-import { tableHeader } from "../data/tableHeader";
+import { useWeatherContext } from "../context";
+import { ContentSection, DataTable } from "./common";
 import { ContentTable } from "./ContentTable";
+import { tableHeader } from "../data/tableHeader";
 
 export const WeatherTable = () => {
   const { filteredHistory } = useWeatherContext();

@@ -1,6 +1,6 @@
-import { useWeatherContext } from "../context/useWeatherContext";
+import { useWeatherContext } from "../context";
 import { Box } from "@mui/material";
-import { Graph } from "./Graph";
+import { Graph } from "./common";
 
 export const WeatherGraphs = () => {
   const { filteredHistory } = useWeatherContext();

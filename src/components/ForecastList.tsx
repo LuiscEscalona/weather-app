@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { ForecastData } from "../interfaces";
-import { ItemList } from "./ItemList";
+import { ItemList } from "./common";
 
 interface Props {
   list: ForecastData[];

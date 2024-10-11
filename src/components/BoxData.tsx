@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
-
-import { GlassBox } from "./GlassBox";
+import { GlassBox } from "./common";
 
 interface Props {
   type: string;
