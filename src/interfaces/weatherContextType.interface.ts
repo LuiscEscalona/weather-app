@@ -1,6 +1,7 @@
 import { ForecastData } from "./forecast.interface";
 import { WeatherResponse } from "./weather.interface";
 
+// Este interface se utiliza para definir los tipos del contexto WeatherContext
 export interface WeatherContextType {
   city: string | null;
   setCity: (value: string | null) => void;

@@ -6,15 +6,18 @@ import { menuOptions } from "../data/menuOptions";
 import sucursales from "../data/sucursales.json";
 
 export const SearchHeader = () => {
-  const { city, setCity, setIsSearchActivated } = useWeatherContext();
-  const [isOpenFeedback, setIsOpenFeedback] = useState<boolean>(false);
-  const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+  const { city, setCity, isSearchActivated, setIsSearchActivated } =
+    useWeatherContext();
   const { weatherQuery } = useWeather(city);
   const { forecastQuery } = useWeather(city);
   const weather = weatherQuery.data ?? null;
 
+  // Estados locales para manejo de feedback
+  const [isOpenFeedback, setIsOpenFeedback] = useState<boolean>(false);
+  const [feedbackMessage, setFeedbackMessage] = useState<string>("");
+
   useEffect(() => {
-    if (weatherQuery.isError) {
+    if (weatherQuery.isError && isSearchActivated) {
       const feedback = weatherQuery.error.message;
       setFeedbackMessage(feedback);
       setIsOpenFeedback(true);
@@ -37,21 +40,22 @@ export const SearchHeader = () => {
     setIsOpenFeedback(false);
   };
 
+  // DropDownWithButton permite la búsqueda si el usuario selecciona una opción no incluida en el combo inicial,
+  // Siguiendo la premisa: debe permitir la búsqueda de nuevas sucursales
+
   return (
-    <>
-      <Header title="Weather App" menu={<MenuWrapper options={menuOptions} />}>
-        <DropDownWithButton
-          setValue={setCity}
-          value={city}
-          handleSearch={handleSearch}
-          options={sucursales}
-          label="Sucursales"
-          handleCloseFeedback={handleCloseFeedback}
-          durationFeedback={6000}
-          feedbackMessage={feedbackMessage}
-          isOpenFeedback={isOpenFeedback}
-        />
-      </Header>
-    </>
+    <Header title="Weather App" menu={<MenuWrapper options={menuOptions} />}>
+      <DropDownWithButton
+        setValue={setCity}
+        value={city}
+        handleSearch={handleSearch}
+        options={sucursales}
+        label="Sucursales"
+        handleCloseFeedback={handleCloseFeedback}
+        durationFeedback={6000}
+        feedbackMessage={feedbackMessage}
+        isOpenFeedback={isOpenFeedback}
+      />
+    </Header>
   );
 };

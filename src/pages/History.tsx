@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useWeatherContext } from "../context";
+import { useWeather } from "../hooks";
+
 import { WeatherTable, WeatherGraphs, ButtonsContainer } from "../components";
 import { PlaceholderContainer } from "../components/common";
 import { getStringBeforeComma, containsWords } from "../utils";
@@ -16,9 +18,12 @@ export const History = () => {
     setIsSearchActivated,
   } = useWeatherContext();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { weatherQuery } = useWeather(city);
+  const { isLoading: isWeatherLoading, isRefetching } = weatherQuery;
 
-  // update filteredHistory
+  //  Se actualiza filteredHistory con los datos almacenados en el localStorage
   useEffect(() => {
+    // filterhistory simula una petición para obtener el histórico por sucursal
     const filterHistory = async () => {
       setIsLoading(true);
 
@@ -36,8 +41,13 @@ export const History = () => {
         const data = await fetchData();
 
         if (data.length && city) {
+          // Se utiliza getStringBeforeComma para obtener solo la ciudad del value del state city
+          // Esto se debe a que la descripción del combo es 'ciudad, país'
           const target = getStringBeforeComma(city);
           const targetWords = target.split(" ");
+          // Se utiliza containsWords para comprobar si el nombre de la ciudad
+          // (en inglés, proveniente de la API de OpenWeather) contiene alguna de las palabras claves extraídas,
+          //  permitiendo un match en el filtro
           const filtered = data.filter(
             (i) => i.name && containsWords(i.name, targetWords)
           );
@@ -51,16 +61,17 @@ export const History = () => {
         setFilteredHistory([]);
       } finally {
         setIsLoading(false);
+        setIsSearchActivated(false);
       }
     };
 
     if (isSearchActivated) {
       filterHistory();
-      setIsSearchActivated(false);
     }
   }, [city, isSearchActivated, setFilteredHistory]);
 
-  if (isLoading) {
+  // se utilizan isWeatherLoading isRefetchingy de la query y el isLoading local para controlar que se cumplan ambas peticiones
+  if (isWeatherLoading || isRefetching || isLoading) {
     return (
       <PlaceholderContainer
         animationData={loading}

@@ -1,3 +1,4 @@
+// Este interface se usa para manejar la respuesta de la consulta forecastQuery
 export interface ForecastResponse {
   cod: string;
   message: number;
@@ -6,6 +7,7 @@ export interface ForecastResponse {
   city: City;
 }
 
+// Este interface se utiliza para almacenar la data en el state forecastData
 export interface ForecastData {
   date: string;
   temperature: number;

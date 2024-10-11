@@ -1,5 +1,8 @@
 import { WeatherResponse } from "../interfaces";
 
+// Esta función toma un array de respuestas del clima y las aplana,
+// transformando cada objeto de WeatherResponse a un formato más simple.
+
 export const flattenWeatherResponse = (data: WeatherResponse[]) => {
   return data.map((item) => ({
     coord_lon: item.coord.lon,
