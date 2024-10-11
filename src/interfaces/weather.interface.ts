@@ -1,3 +1,5 @@
+// Este interface se usa para manejar la respuesta de la consulta weatherQuery
+
 export interface WeatherResponse {
   coord: {
     lon: number;

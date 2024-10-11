@@ -14,15 +14,16 @@ export const getCurrentWeather = async (
       });
 
       if (data && data.weather && data.main) {
-        const history = JSON.parse(localStorage.getItem(`history`) || "[]");
-        history.push(data);
+        // Se guardan los datos en el localStorage para generar el histórico por sucursal
+        let history = JSON.parse(localStorage.getItem(`history`) || "[]");
+        history = [...history, data];
         localStorage.setItem(`history`, JSON.stringify(history));
       }
 
       return data;
     } catch (error) {
       console.log("Error:", error);
-      throw new Error("No se pudo obtener el clima para esta ciudad");
+      throw new Error("No se pudo obtener el clima para esta sucursal");
     }
   }
 

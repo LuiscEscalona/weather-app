@@ -9,16 +9,19 @@ export const WeatherGraphs = () => {
     return <div>No hay datos para mostrar</div>;
   }
 
+  // Mapea el filteredHistory para extraer los datos de temperatura
   const temperatureData = filteredHistory.map((item) => ({
     dt: item.dt,
     value: item.main.temp,
   }));
 
+  // Mapea el filteredHistory para extraer los datos de humedad
   const humidityData = filteredHistory.map((item) => ({
     dt: item.dt,
     value: item.main.humidity,
   }));
 
+  // Mapea el filteredHistory para extraer los datos de velocidad del viento
   const windSpeedData = filteredHistory.map((item) => ({
     dt: item.dt,
     value: item.wind.speed,
@@ -34,6 +37,7 @@ export const WeatherGraphs = () => {
         width="100%"
         p={2}
       >
+        {/* Gráfico de Temperatura */}
         <Graph<{ dt: number; value: number }>
           data={temperatureData}
           title="Temperatura en el tiempo"
@@ -43,6 +47,7 @@ export const WeatherGraphs = () => {
           chartType="line"
         />
 
+        {/* Gráfico de Humedad */}
         <Graph<{ dt: number; value: number }>
           data={humidityData}
           title="Humedad en el tiempo"
@@ -53,6 +58,7 @@ export const WeatherGraphs = () => {
           colors={["#66DA26"]}
         />
 
+        {/* Gráfico de Velocidad del Viento */}
         <Graph<{ dt: number; value: number }>
           data={windSpeedData}
           title="Velocidad en el tiempo"

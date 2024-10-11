@@ -2,22 +2,25 @@ import { Box, Tooltip, Button } from "@mui/material";
 import { PictureAsPdf, Description } from "@mui/icons-material";
 import { useWeatherContext } from "../context";
 import { generateExcel, flattenWeatherResponse, generatePDF } from "../utils";
+import { useCallback } from "react";
 
 export const ButtonsContainer = () => {
   const { filteredHistory } = useWeatherContext();
 
-  const generateReport = () => {
+  const generateReport = useCallback(() => {
     if (filteredHistory.length) {
+      // flattenWeatherResponse transformar la data para exportar a Excel
+      // La libreria solo maneja el nivel superficial de los objetos
       const flatData = flattenWeatherResponse(filteredHistory);
       generateExcel(flatData, "Historial Clima", "historial_clima.xlsx");
     }
-  };
+  }, [filteredHistory]);
 
-  const generateGraphsDoc = () => {
+  const generateGraphsDoc = useCallback(() => {
     if (filteredHistory.length) {
       generatePDF("pdf-content", "graficos.pdf");
     }
-  };
+  }, [filteredHistory]);
 
   return (
     <Box
@@ -30,6 +33,7 @@ export const ButtonsContainer = () => {
     >
       <Tooltip title="Descargar reporte" arrow>
         <Button
+          aria-label="Descargar reporte"
           variant="contained"
           onClick={generateReport}
           sx={{
@@ -44,6 +48,7 @@ export const ButtonsContainer = () => {
 
       <Tooltip title="Descargar gráficos" arrow>
         <Button
+          aria-label="Descargar gráficos"
           variant="contained"
           sx={{
             backgroundColor: "#e39f9a",

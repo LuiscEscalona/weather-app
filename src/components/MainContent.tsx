@@ -7,6 +7,7 @@ import { CurrentWeather } from "./CurrentWeather";
 import { ForecastWeather } from "./ForecastWeather";
 import { BoxData } from "./BoxData";
 import emptyWeather from "../assets/animations/emptyWeather.json";
+import loading from "../assets/animations/loading.json";
 
 export const MainContent = () => {
   const { city, forecastData, setForecastData } = useWeatherContext();
@@ -14,6 +15,7 @@ export const MainContent = () => {
   const weather = weatherQuery.data ?? null;
   const forecast = forecastQuery.data ?? null;
 
+  // Se actualiza forecastData con los primeros 5 registros de la lista del pronóstico
   useEffect(() => {
     if (forecast) {
       const firstFiveHours = forecast.list.slice(0, 5).map((i) => ({
@@ -25,6 +27,17 @@ export const MainContent = () => {
       setForecastData(firstFiveHours);
     }
   }, [forecast, setForecastData]);
+
+  if (weatherQuery.isLoading || weatherQuery.isRefetching) {
+    return (
+      <PlaceholderContainer
+        animationData={loading}
+        description="Actualizando clima..."
+        top="35%"
+        fontSize={{ xs: "1rem", sm: "1.2rem", md: "1.5rem" }}
+      />
+    );
+  }
 
   return (
     <>
