@@ -1,4 +1,4 @@
-import { weatherApi } from "../api/weather.api";
+import { weatherApi } from "../api";
 import { WeatherResponse } from "../interfaces";
 
 export const getCurrentWeather = async (

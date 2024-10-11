@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useWeatherContext } from "../context/useWeatherContext";
-import { useWeather } from "../hooks/useWeather.hook";
-import { DropDownWithButton } from "./DropDownWithButton";
-import { Header } from "./Header";
+import { useWeatherContext } from "../context";
+import { useWeather } from "../hooks";
+import { Header, MenuWrapper, DropDownWithButton } from "./common";
 import { menuOptions } from "../data/menuOptions";
 import sucursales from "../data/sucursales.json";
-import { MenuWrapper } from "./MenuWrapper";
 
 export const SearchHeader = () => {
   const { city, setCity, setIsSearchActivated } = useWeatherContext();

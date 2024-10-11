@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Box, Typography } from "@mui/material";
-import { GlassBox } from "./GlassBox";
+import { GlassBox } from "./common";
 
 interface Props {
   city?: string;
@@ -21,7 +21,6 @@ export const CurrentWeather: React.FC<Props> = ({
     <Box
       className="container-weather-home bg-color"
       sx={{
-        // padding: { xs: "10px", sm: "20px" },
         backgroundColor: "#e0f7fa",
         textAlign: "center",
         maxWidth: "500px",

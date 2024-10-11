@@ -1,8 +1,8 @@
 import { ReactNode } from "react";
 import { Box, Typography } from "@mui/material";
-import { useWeatherContext } from "../context/useWeatherContext";
+import { useWeatherContext } from "../context";
 import { ForecastList } from "./ForecastList";
-import { GlassBox } from "./GlassBox";
+import { GlassBox } from "./common";
 
 interface Props {
   children?: ReactNode;
@@ -15,7 +15,6 @@ export const ForecastWeather: React.FC<Props> = ({ children }) => {
     <Box
       className="container-weather-home bg-color"
       sx={{
-        // padding: { xs: "10px", sm: "20px" },
         backgroundColor: "#e0f7fa",
         textAlign: "center",
         maxWidth: "500px",

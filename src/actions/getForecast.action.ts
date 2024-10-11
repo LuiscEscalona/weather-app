@@ -1,4 +1,4 @@
-import { weatherApi } from "../api/weather.api";
+import { weatherApi } from "../api";
 import { ForecastResponse } from "../interfaces";
 
 export const getForecast = async (city: string): Promise<ForecastResponse> => {

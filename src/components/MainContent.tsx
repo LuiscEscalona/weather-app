@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useWeatherContext } from "../context/useWeatherContext";
-import { useWeather } from "../hooks/useWeather.hook";
+import { useWeatherContext } from "../context";
+import { useWeather } from "../hooks";
 import { Box } from "@mui/material";
-import { ContentSection } from "./ContentSection";
+import { ContentSection, PlaceholderContainer } from "./common";
 import { CurrentWeather } from "./CurrentWeather";
 import { ForecastWeather } from "./ForecastWeather";
 import { BoxData } from "./BoxData";
-import { EmptyData } from "./EmptyData";
+import emptyWeather from "../assets/animations/emptyWeather.json";
 
 export const MainContent = () => {
   const { city, forecastData, setForecastData } = useWeatherContext();
@@ -77,7 +77,12 @@ export const MainContent = () => {
         </ContentSection>
       ) : (
         <>
-          <EmptyData />
+          <PlaceholderContainer
+            top="35%"
+            fontSize={{ xs: "1rem", sm: "1.2rem", md: "1.5rem" }}
+            description="Ingresa una sucursal para visualizar la data"
+            animationData={emptyWeather}
+          />
         </>
       )}
     </>
