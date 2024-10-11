@@ -6,29 +6,23 @@ import { Header } from "./Header";
 import { menuOptions } from "../data/menuOptions";
 import sucursales from "../data/sucursales.json";
 import { MenuWrapper } from "./MenuWrapper";
-import useLocalStorage from "../hooks/useLocalStorage.hook";
-import { WeatherResponse } from "../interfaces";
 
 export const SearchHeader = () => {
   const { city, setCity, setIsSearchActivated } = useWeatherContext();
   const [isOpenFeedback, setIsOpenFeedback] = useState<boolean>(false);
   const [feedbackMessage, setFeedbackMessage] = useState<string>("");
-
   const { weatherQuery } = useWeather(city);
   const { forecastQuery } = useWeather(city);
   const weather = weatherQuery.data ?? null;
-  const { addValue } = useLocalStorage<WeatherResponse>("history", []);
 
-  // save localStorage
   useEffect(() => {
-    if (weather && weatherQuery.isSuccess) {
-      addValue(weatherQuery.data);
-    }
-
     if (weatherQuery.isError) {
+      const feedback = weatherQuery.error.message;
+      setFeedbackMessage(feedback);
+      setIsOpenFeedback(true);
       setIsSearchActivated(false);
     }
-  }, [weather]);
+  }, [weather, weatherQuery]);
 
   const handleSearch = () => {
     if (city) {
@@ -36,7 +30,7 @@ export const SearchHeader = () => {
       weatherQuery.refetch();
       forecastQuery.refetch();
     } else {
-      setFeedbackMessage("Debe ingresar algun valor para iniciar la búsqueda");
+      setFeedbackMessage("Debe ingresar algún valor para iniciar la búsqueda");
       setIsOpenFeedback(true);
     }
   };
