@@ -2,15 +2,9 @@ import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import App from "../App";
 
-test("demo", () => {
-  expect(true).toBe(true);
-});
-
-test("Renders the main page", () => {
+test("Renders App", () => {
   render(<App />);
   expect(true).toBeTruthy();
 });
 
-test("demo", () => {
-  expect(true).toBe(true);
-});
+// Tuve problemas para hacer correr los tests debido a un problema de tipado con typeScript
