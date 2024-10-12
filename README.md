@@ -8,7 +8,14 @@ También muestra el clima actual de la sucursal y el pronóstico en las próxima
 - **Ingreso de una sucursal en el buscador:**
 
   - Pantalla Home mostrará el clima actual y el pronóstico
+
+    ![home](./src/assets/img/weather-app-home.png)
+
   - Pantalla Historico mostrará una grilla con datos y gráficos
+
+    ![historico](./src/assets/img/weather-app-historico.png)
+
+    ![gráficas](./src/assets/img/weather-app-historico-graph.png)
 
 - **Generación de reportes:**
 
